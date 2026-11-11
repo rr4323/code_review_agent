@@ -1,0 +1,25 @@
+{
+ "instance_id": "cmb-006-boxoffice-unit_mismatch-k5",
+ "domain": "boxoffice",
+ "bug_type": "unit_mismatch",
+ "n_distractors": 5,
+ "changed_files": [
+  "boxoffice/ticket_controller.py"
+ ],
+ "bug_file": "boxoffice/ticket_controller.py",
+ "bug_line": 42,
+ "child_file": "boxoffice/ticket_service.py",
+ "tool_bugs": [],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "argument_order",
+  "exception_mismatch",
+  "none_dereference",
+  "unit_mismatch"
+ ]
+}

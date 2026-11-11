@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-000-store-none_dereference-k1",
+ "domain": "store",
+ "bug_type": "none_dereference",
+ "n_distractors": 1,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": "store/product_controller.py",
+ "bug_line": 37,
+ "child_file": "store/product_repository.py",
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "store/product_repository.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "unit_mismatch",
+  "argument_order",
+  "none_dereference"
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "instance_id": "cmb-014-boxoffice-argument_order-k5",
+ "domain": "boxoffice",
+ "bug_type": "argument_order",
+ "n_distractors": 5,
+ "changed_files": [
+  "boxoffice/ticket_controller.py"
+ ],
+ "bug_file": "boxoffice/ticket_controller.py",
+ "bug_line": 41,
+ "child_file": "boxoffice/ticket_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "layer_violation",
+   "file": "boxoffice/ticket_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "boxoffice/ticket_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "unit_mismatch",
+  "none_dereference",
+  "argument_order"
+ ]
+}

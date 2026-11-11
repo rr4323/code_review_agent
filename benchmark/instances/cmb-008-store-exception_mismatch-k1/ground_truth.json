@@ -1,0 +1,25 @@
+{
+ "instance_id": "cmb-008-store-exception_mismatch-k1",
+ "domain": "store",
+ "bug_type": "exception_mismatch",
+ "n_distractors": 1,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": "store/product_controller.py",
+ "bug_line": 37,
+ "child_file": "store/product_service.py",
+ "tool_bugs": [],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "none_dereference",
+  "unit_mismatch",
+  "argument_order",
+  "exception_mismatch"
+ ]
+}

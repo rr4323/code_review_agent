@@ -1,0 +1,330 @@
+{
+ "system": "flat",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.audit",
+   "store.clock",
+   "store.formatting",
+   "store.ids",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service",
+   "store.validation"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.audit"
+   ],
+   [
+    "store.product_controller",
+    "store.clock"
+   ],
+   [
+    "store.product_controller",
+    "store.formatting"
+   ],
+   [
+    "store.product_controller",
+    "store.ids"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.audit",
+    "store.clock",
+    "store.formatting",
+    "store.ids",
+    "store.product_repository",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 12
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 1,
+    "seconds": 0.013,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 1,
+    "seconds": 0.317,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 1,
+    "seconds": 0.316,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 0,
+    "seconds": 0.316,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.383,
+    "note": "1 passed in 0.04s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.379,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_repository",
+    "category": "performance",
+    "rule_id": "PERF-NPLUS1",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 33,
+    "message": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+    "tool": "ast-query-in-loop",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_repository",
+    "category": "security",
+    "rule_id": "BANDIT-B608",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 32,
+    "message": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+    "tool": "bandit",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "code_quality",
+    "rule_id": "LANG-001",
+    "severity": "medium",
+    "file": "store/product_controller.py",
+    "line": 46,
+    "message": "Public function 'build_summary' lacks full type annotations.",
+    "tool": "ast-annotation-check",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 24,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 30,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 37,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 46,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {},
+ "compound_risks": [],
+ "repair": null,
+ "cache_hits": 0,
+ "findings": [
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 46,
+   "bug_class": "none_dereference",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The function 'build_summary' is defined but not called anywhere in the provided code snippet, suggesting it might be unused or incomplete.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 24,
+   "bug_class": "none_dereference",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The entry point 'handle_payment' is defined but not referenced by any other function in the provided code snippet.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 30,
+   "bug_class": "none_dereference",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The entry point 'handle_quote' is defined but not referenced by any other function in the provided code snippet.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 37,
+   "bug_class": "none_dereference",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The entry point 'handle_reserve' is defined but not referenced by any other function in the provided code snippet.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  }
+ ],
+ "status": "PASSED",
+ "usage": {
+  "llm_calls": 1,
+  "prompt_tokens_evaluated": 3231,
+  "output_tokens": 261,
+  "prompt_chars_sent": 9703,
+  "max_prompt_chars": 9703,
+  "llm_wall_s": 184.82,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "flat",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 3231,
+    "output_tokens": 261,
+    "prompt_eval_s": 146.171932,
+    "eval_s": 38.578791,
+    "wall_s": 184.81991393299995,
+    "prompt_chars": 9703,
+    "parse_ok": true,
+    "response_text": "{\"findings\": [{\"file\": \"store/product_controller.py\", \"line\": 46, \"bug_class\": \"none_dereference\", \"severity\": \"low\", \"explanation\": \"The function 'build_summary' is defined but not called anywhere in the provided code snippet, suggesting it might be unused or incomplete.\"}, {\"file\": \"store/product_controller.py\", \"line\": 24, \"bug_class\": \"none_dereference\", \"severity\": \"low\", \"explanation\": \"The entry point 'handle_payment' is defined but not referenced by any other function in the provided code snippet.\"}, {\"file\": \"store/product_controller.py\", \"line\": 30, \"bug_class\": \"none_dereference\", \"severity\": \"low\", \"explanation\": \"The entry point 'handle_quote' is defined but not referenced by any other function in the provided code snippet.\"}, {\"file\": \"store/product_controller.py\", \"line\": 37, \"bug_class\": \"none_dereference\", \"severity\": \"low\", \"explanation\": \"The entry point 'handle_reserve' is defined but not referenced by any other function in the provided code snippet.\"}]}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.02,
+  "evidence": 0.396,
+  "total": 185.24
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "peak_ollama_rss_mb": 4607.7,
+ "ground_truth": {
+  "instance_id": "cmb-004-store-unit_mismatch-k5",
+  "domain": "store",
+  "bug_type": "unit_mismatch",
+  "n_distractors": 5,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": "store/product_controller.py",
+  "bug_line": 33,
+  "child_file": "store/product_service.py",
+  "tool_bugs": [
+   {
+    "bug_class": "sql_injection",
+    "file": "store/product_repository.py"
+   },
+   {
+    "bug_class": "missing_types",
+    "file": "store/product_controller.py"
+   }
+  ],
+  "flags": {
+   "sqli": true,
+   "nplus1": false,
+   "arch": false,
+   "missing_annotation": true
+  },
+  "handler_order": [
+   "none_dereference",
+   "argument_order",
+   "unit_mismatch",
+   "exception_mismatch"
+  ]
+ },
+ "instance_id": "cmb-004-store-unit_mismatch-k5"
+}

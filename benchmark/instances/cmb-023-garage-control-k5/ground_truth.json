@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-023-garage-control-k5",
+ "domain": "garage",
+ "bug_type": null,
+ "n_distractors": 5,
+ "changed_files": [
+  "garage/part_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "garage/part_repository.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "argument_order",
+  "exception_mismatch",
+  "none_dereference",
+  "unit_mismatch"
+ ]
+}

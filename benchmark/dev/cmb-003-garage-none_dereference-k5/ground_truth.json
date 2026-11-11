@@ -1,0 +1,38 @@
+{
+ "instance_id": "cmb-003-garage-none_dereference-k5",
+ "domain": "garage",
+ "bug_type": "none_dereference",
+ "n_distractors": 5,
+ "changed_files": [
+  "garage/part_controller.py"
+ ],
+ "bug_file": "garage/part_controller.py",
+ "bug_line": 40,
+ "child_file": "garage/part_repository.py",
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "garage/part_repository.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "garage/part_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "garage/part_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "argument_order",
+  "unit_mismatch",
+  "none_dereference"
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-001-library-none_dereference-k5",
+ "domain": "library",
+ "bug_type": "none_dereference",
+ "n_distractors": 5,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": "library/book_controller.py",
+ "bug_line": 26,
+ "child_file": "library/book_repository.py",
+ "tool_bugs": [
+  {
+   "bug_class": "missing_types",
+   "file": "library/book_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "unit_mismatch",
+  "none_dereference",
+  "exception_mismatch",
+  "argument_order"
+ ]
+}

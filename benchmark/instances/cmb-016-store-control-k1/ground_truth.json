@@ -1,0 +1,34 @@
+{
+ "instance_id": "cmb-016-store-control-k1",
+ "domain": "store",
+ "bug_type": null,
+ "n_distractors": 1,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "store/product_repository.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "store/product_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "unit_mismatch",
+  "argument_order",
+  "none_dereference"
+ ]
+}

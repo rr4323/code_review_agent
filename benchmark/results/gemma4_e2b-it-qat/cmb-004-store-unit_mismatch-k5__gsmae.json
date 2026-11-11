@@ -1,0 +1,1143 @@
+{
+ "system": "gsmae",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.audit",
+   "store.clock",
+   "store.formatting",
+   "store.ids",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service",
+   "store.validation"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.audit"
+   ],
+   [
+    "store.product_controller",
+    "store.clock"
+   ],
+   [
+    "store.product_controller",
+    "store.formatting"
+   ],
+   [
+    "store.product_controller",
+    "store.ids"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.audit",
+    "store.clock",
+    "store.formatting",
+    "store.ids",
+    "store.product_repository",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 12
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 1,
+    "seconds": 0.012,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 1,
+    "seconds": 0.341,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 1,
+    "seconds": 0.339,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 0,
+    "seconds": 0.339,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.47,
+    "note": "1 passed in 0.03s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.47,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_repository",
+    "category": "performance",
+    "rule_id": "PERF-NPLUS1",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 33,
+    "message": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+    "tool": "ast-query-in-loop",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_repository",
+    "category": "security",
+    "rule_id": "BANDIT-B608",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 32,
+    "message": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+    "tool": "bandit",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "code_quality",
+    "rule_id": "LANG-001",
+    "severity": "medium",
+    "file": "store/product_controller.py",
+    "line": 46,
+    "message": "Public function 'build_summary' lacks full type annotations.",
+    "tool": "ast-annotation-check",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 24,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 30,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 37,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 46,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {
+  "store.audit": {
+   "module_id": "store.audit",
+   "layer": "data",
+   "merkle_hash": "db0d75085b08ccfa",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "record_event",
+     "lineno": 4,
+     "signature": "def record_event(log: list, kind: str, payload: dict) -> None",
+     "doc": "Append an event to the audit log.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.audit (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.clock": {
+   "module_id": "store.clock",
+   "layer": "data",
+   "merkle_hash": "129a48ca7a6e6943",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "now_ms",
+     "lineno": 5,
+     "signature": "def now_ms() -> int",
+     "doc": "Current time in MILLISECONDS since the epoch.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.clock (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.formatting": {
+   "module_id": "store.formatting",
+   "layer": "data",
+   "merkle_hash": "6a203a0409965e5c",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "format_dollars",
+     "lineno": 4,
+     "signature": "def format_dollars(amount: float) -> str",
+     "doc": "Format an amount given in DOLLARS, e.g. 12.5 -> '$12.50'.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.formatting (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.ids": {
+   "module_id": "store.ids",
+   "layer": "data",
+   "merkle_hash": "f2ded0104cc4cdd9",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "parse_id",
+     "lineno": 5,
+     "signature": "def parse_id(raw: str) -> Optional[int]",
+     "doc": "Return the integer id, or None when raw is not a positive integer.",
+     "may_return_none": true,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.ids (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.product_repository": {
+   "module_id": "store.product_repository",
+   "layer": "data",
+   "merkle_hash": "4fbb7587cb3bad8a",
+   "spawned": [
+    "performance",
+    "security"
+   ],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 33,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+     "fix": "Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 32,
+     "bug_class": "sql_injection",
+     "severity": "high",
+     "category": "security",
+     "rule_id": "BANDIT-B608",
+     "explanation": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+     "fix": "Use parameterized queries for LIKE clauses instead of f-string interpolation.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "get_product",
+     "lineno": 6,
+     "signature": "def get_product(conn: sqlite3.Connection, product_id: int) -> Optional[dict]",
+     "doc": "Return the product as a dict, or None when no product has this id.",
+     "may_return_none": true,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "set_stock",
+     "lineno": 16,
+     "signature": "def set_stock(conn: sqlite3.Connection, product_id: int, stock: int) -> None",
+     "doc": "Overwrite the stock level of a product.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "get_balance",
+     "lineno": 21,
+     "signature": "def get_balance(conn: sqlite3.Connection, customer_id: int) -> int",
+     "doc": "Return the credit balance of a customer (0 if unknown).",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "set_balance",
+     "lineno": 27,
+     "signature": "def set_balance(conn: sqlite3.Connection, customer_id: int, balance: int) -> None",
+     "doc": "Overwrite the credit balance of a customer.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "search_products",
+     "lineno": 30,
+     "signature": "def search_products(conn: sqlite3.Connection, name_fragment: str) -> list",
+     "doc": "Return ids of products whose name contains the fragment.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "The module suffers from a high-severity N+1 query pattern and a high-severity SQL injection risk due to string-based query construction.",
+   "risks_for_callers": [
+    "The module uses inefficient N+1 queries and is vulnerable to SQL injection."
+   ],
+   "compound_risks": [],
+   "max_severity": "high"
+  },
+  "store.validation": {
+   "module_id": "store.validation",
+   "layer": "data",
+   "merkle_hash": "2514aab21feff41f",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "require_positive",
+     "lineno": 4,
+     "signature": "def require_positive(value: int, name: str) -> int",
+     "doc": "Return value if it is > 0, otherwise raise ValueError.",
+     "may_return_none": false,
+     "raises": [
+      "ValueError"
+     ],
+     "annotated": true
+    }
+   ],
+   "summary": "store.validation (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.product_serializer": {
+   "module_id": "store.product_serializer",
+   "layer": "serialization",
+   "merkle_hash": "8f2a68e2188b93c4",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [
+    "store.product_repository"
+   ],
+   "local_findings": [],
+   "inherited_findings": [
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 33,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+     "fix": "Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 32,
+     "bug_class": "sql_injection",
+     "severity": "high",
+     "category": "security",
+     "rule_id": "BANDIT-B608",
+     "explanation": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+     "fix": "Use parameterized queries for LIKE clauses instead of f-string interpolation.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "contracts": [
+    {
+     "name": "product_to_dict",
+     "lineno": 7,
+     "signature": "def product_to_dict(item: dict) -> dict",
+     "doc": "Convert a repository row into a public payload.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "serialize_products",
+     "lineno": 10,
+     "signature": "def serialize_products(items: list) -> list",
+     "doc": "Serialize already-loaded product rows.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "This module is high-risk due to N+1 query patterns and SQL injection vulnerabilities inherited from the product repository.",
+   "risks_for_callers": [
+    "The module uses inefficient N+1 queries and is vulnerable to SQL injection."
+   ],
+   "compound_risks": [],
+   "max_severity": "high"
+  },
+  "store.product_service": {
+   "module_id": "store.product_service",
+   "layer": "data",
+   "merkle_hash": "a3ee30a3246ead53",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [
+    "store.product_repository"
+   ],
+   "local_findings": [],
+   "inherited_findings": [
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 33,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+     "fix": "Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 32,
+     "bug_class": "sql_injection",
+     "severity": "high",
+     "category": "security",
+     "rule_id": "BANDIT-B608",
+     "explanation": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+     "fix": "Use parameterized queries for LIKE clauses instead of f-string interpolation.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "contracts": [
+    {
+     "name": "unit_price_cents",
+     "lineno": 11,
+     "signature": "def unit_price_cents(conn: sqlite3.Connection, product_id: int) -> int",
+     "doc": "Return the unit price of the product in integer CENTS (e.g. 1999 means $19.99).",
+     "may_return_none": false,
+     "raises": [
+      "KeyError"
+     ],
+     "annotated": true
+    },
+    {
+     "name": "reserve_stock",
+     "lineno": 19,
+     "signature": "def reserve_stock(conn: sqlite3.Connection, product_id: int, quantity: int) -> int",
+     "doc": "Reserve `quantity` units and return the remaining stock.  Raises OutOfStockError when quantity exceeds the available stock.",
+     "may_return_none": false,
+     "raises": [
+      "KeyError",
+      "OutOfStockError"
+     ],
+     "annotated": true
+    },
+    {
+     "name": "transfer_credit",
+     "lineno": 34,
+     "signature": "def transfer_credit(conn: sqlite3.Connection, from_account: int, to_account: int, amount: int) -> None",
+     "doc": "Move `amount` credits FROM `from_account` TO `to_account`.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "The module suffers from high-severity N+1 query patterns and SQL injection risks due to string-based query construction.",
+   "risks_for_callers": [
+    "The module uses inefficient N+1 queries.",
+    "The module is vulnerable to SQL injection."
+   ],
+   "compound_risks": [
+    "Inefficient N+1 queries combined with SQL injection risks."
+   ],
+   "max_severity": "high"
+  },
+  "store.product_controller": {
+   "module_id": "store.product_controller",
+   "layer": "presentation",
+   "merkle_hash": "aed3ced8e92aacdc",
+   "spawned": [
+    "correctness",
+    "code_quality",
+    "testing"
+   ],
+   "skipped": [
+    "architecture",
+    "performance",
+    "security"
+   ],
+   "children_merged": [
+    "store.audit",
+    "store.clock",
+    "store.formatting",
+    "store.ids",
+    "store.product_repository",
+    "store.product_serializer",
+    "store.product_service",
+    "store.validation"
+   ],
+   "local_findings": [
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 33,
+     "bug_class": "unit_mismatch",
+     "severity": "high",
+     "category": "correctness",
+     "rule_id": "",
+     "explanation": "unit_price_cents returns cents; total_dollars calculation needs division by 100.",
+     "fix": "",
+     "related_module": "",
+     "source": "llm"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 46,
+     "bug_class": "missing_types",
+     "severity": "medium",
+     "category": "code_quality",
+     "rule_id": "LANG-001",
+     "explanation": "Public function 'build_summary' lacks full type annotations.",
+     "fix": "Add type annotations to the return value of build_summary.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 24,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_payment' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 30,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_quote' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 37,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_reserve' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 46,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'build_summary' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    }
+   ],
+   "inherited_findings": [
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 33,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+     "fix": "Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_repository",
+     "file": "store/product_repository.py",
+     "line": 32,
+     "bug_class": "sql_injection",
+     "severity": "high",
+     "category": "security",
+     "rule_id": "BANDIT-B608",
+     "explanation": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+     "fix": "Use parameterized queries for LIKE clauses instead of f-string interpolation.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "contracts": [
+    {
+     "name": "handle_get_product",
+     "lineno": 16,
+     "signature": "def handle_get_product(conn: sqlite3.Connection, product_id: int) -> dict",
+     "doc": "Return {\"status\": 200, \"name\": ...}, or {\"status\": 404} when the product does not exist.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_payment",
+     "lineno": 24,
+     "signature": "def handle_payment(conn: sqlite3.Connection, payer_id: int, payee_id: int, amount: int) -> dict",
+     "doc": "Move `amount` credits from the payer to the payee and return {\"status\": 200}.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_quote",
+     "lineno": 30,
+     "signature": "def handle_quote(conn: sqlite3.Connection, product_id: int, quantity: int) -> dict",
+     "doc": "Return {\"status\": 200, \"total_dollars\": <float>} for `quantity` units including tax.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_reserve",
+     "lineno": 37,
+     "signature": "def handle_reserve(conn: sqlite3.Connection, product_id: int, quantity: int) -> dict",
+     "doc": "Return {\"status\": 200, \"remaining\": n}, or {\"status\": 409} when stock is insufficient.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "build_summary",
+     "lineno": 46,
+     "signature": "def build_summary(raw_id, quantity, subtotal_dollars, events)",
+     "doc": "Assemble a summary payload for the order screen.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": false
+    }
+   ],
+   "summary": "This module has high-severity unit mismatch and missing type annotations. It inherits high risks from its dependencies regarding N+1 queries and SQL injection.",
+   "risks_for_callers": [
+    "Unit price calculation is incorrect (line 33).",
+    "Public function 'build_summary' lacks type annotations (line 46)."
+   ],
+   "compound_risks": [
+    "The unit mismatch (line 33) combined with risks from 'store.product_repository' and 'store.product_serializer' could lead to incorrect financial reporting and data integrity issues."
+   ],
+   "max_severity": "high"
+  }
+ },
+ "compound_risks": [
+  "Inefficient N+1 queries combined with SQL injection risks.",
+  "The unit mismatch (line 33) combined with risks from 'store.product_repository' and 'store.product_serializer' could lead to incorrect financial reporting and data integrity issues."
+ ],
+ "repair": {
+  "module_id": "store.product_controller",
+  "file": "store/product_controller.py",
+  "finding_line": 33,
+  "applied": true,
+  "diff": "--- a/store/product_controller.py\n+++ b/store/product_controller.py\n@@ -30,7 +30,7 @@\n def handle_quote(conn: sqlite3.Connection, product_id: int, quantity: int) -> dict:\n     \"\"\"Return {\"status\": 200, \"total_dollars\": <float>} for `quantity` units including tax.\"\"\"\n     subtotal_cents = service.unit_price_cents(conn, product_id) * quantity\n-    total_dollars = subtotal_cents * TAX_MULTIPLIER\n+    total_dollars = (subtotal_cents / 100) * TAX_MULTIPLIER\n     return {\"status\": 200, \"total_dollars\": round(total_dollars, 2)}\n \n \n",
+  "tests_passed": true,
+  "test_tail": ".....                                                                    [100%]\n5 passed in 0.03s",
+  "target_finding": {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 33,
+   "bug_class": "unit_mismatch",
+   "severity": "high",
+   "category": "correctness",
+   "rule_id": "",
+   "explanation": "unit_price_cents returns cents; total_dollars calculation needs division by 100.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm"
+  },
+  "attempts": 1,
+  "ast_gate": {
+   "syntax_valid": true,
+   "safe": true,
+   "error": "",
+   "blocked_imports": [],
+   "blocked_calls": []
+  },
+  "sandbox_telemetry": {
+   "sandbox_enabled": true,
+   "isolated_filesystem": true,
+   "env_scrubbed": true,
+   "env_keys_stripped": 76,
+   "network_blocked": true,
+   "outside_writes_blocked": true,
+   "rlimit_cpu_s": 30,
+   "rlimit_memory_mb": 768,
+   "rlimit_fsize_mb": 16,
+   "rlimit_nofile": 256,
+   "host_repo_digest_before": "e11a62156fe7e141",
+   "host_repo_digest_after": "e11a62156fe7e141",
+   "host_repo_unmodified": true
+  }
+ },
+ "cache_hits": 0,
+ "summary": "This module has high-severity unit mismatch and missing type annotations. It inherits high risks from its dependencies regarding N+1 queries and SQL injection.",
+ "findings": [
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 33,
+   "bug_class": "unit_mismatch",
+   "severity": "high",
+   "category": "correctness",
+   "rule_id": "",
+   "explanation": "unit_price_cents returns cents; total_dollars calculation needs division by 100.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 46,
+   "bug_class": "missing_types",
+   "severity": "medium",
+   "category": "code_quality",
+   "rule_id": "LANG-001",
+   "explanation": "Public function 'build_summary' lacks full type annotations.",
+   "fix": "Add type annotations to the return value of build_summary.",
+   "related_module": "",
+   "source": "tool+llm"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 24,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_payment' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 30,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_quote' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 37,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_reserve' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 46,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'build_summary' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_repository",
+   "file": "store/product_repository.py",
+   "line": 33,
+   "bug_class": "n_plus_one",
+   "severity": "high",
+   "category": "performance",
+   "rule_id": "PERF-NPLUS1",
+   "explanation": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+   "fix": "Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.",
+   "related_module": "",
+   "source": "tool+llm"
+  },
+  {
+   "module_id": "store.product_repository",
+   "file": "store/product_repository.py",
+   "line": 32,
+   "bug_class": "sql_injection",
+   "severity": "high",
+   "category": "security",
+   "rule_id": "BANDIT-B608",
+   "explanation": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+   "fix": "Use parameterized queries for LIKE clauses instead of f-string interpolation.",
+   "related_module": "",
+   "source": "tool+llm"
+  }
+ ],
+ "status": "FAILED_QUALITY_GATE",
+ "usage": {
+  "llm_calls": 9,
+  "prompt_tokens_evaluated": 8536,
+  "output_tokens": 663,
+  "prompt_chars_sent": 29697,
+  "max_prompt_chars": 7553,
+  "llm_wall_s": 477.84,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "category:performance",
+    "module_id": "store.product_repository",
+    "prompt_tokens": 748,
+    "output_tokens": 56,
+    "prompt_eval_s": 4.191376,
+    "eval_s": 7.671042,
+    "wall_s": 11.895864183000413,
+    "prompt_chars": 2357,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Use a parameterized query or a database cursor to fetch results in a single query if multiple products are needed, or iterate over the results of a single query.\"}]}"
+   },
+   {
+    "role": "category:security",
+    "module_id": "store.product_repository",
+    "prompt_tokens": 748,
+    "output_tokens": 38,
+    "prompt_eval_s": 5.692369,
+    "eval_s": 6.850782,
+    "wall_s": 12.564520126999923,
+    "prompt_chars": 2370,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Use parameterized queries for LIKE clauses instead of f-string interpolation.\"}]}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_repository",
+    "prompt_tokens": 249,
+    "output_tokens": 81,
+    "prompt_eval_s": 0.903059,
+    "eval_s": 16.716242999,
+    "wall_s": 17.659698468999522,
+    "prompt_chars": 939,
+    "parse_ok": true,
+    "response_text": "{\n  \"summary\": \"The module suffers from a high-severity N+1 query pattern and a high-severity SQL injection risk due to string-based query construction.\",\n  \"risks_for_callers\": [\n    \"The module uses inefficient N+1 queries and is vulnerable to SQL injection.\"\n  ],\n  \"compound_risks\": []\n}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_serializer",
+    "prompt_tokens": 223,
+    "output_tokens": 61,
+    "prompt_eval_s": 0.653473,
+    "eval_s": 16.214449,
+    "wall_s": 16.895044836000125,
+    "prompt_chars": 912,
+    "parse_ok": true,
+    "response_text": "{\"summary\": \"This module is high-risk due to N+1 query patterns and SQL injection vulnerabilities inherited from the product repository.\", \"risks_for_callers\": [\"The module uses inefficient N+1 queries and is vulnerable to SQL injection.\"], \"compound_risks\": []}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_service",
+    "prompt_tokens": 223,
+    "output_tokens": 99,
+    "prompt_eval_s": 1.019121,
+    "eval_s": 23.663271,
+    "wall_s": 24.722478136999598,
+    "prompt_chars": 900,
+    "parse_ok": true,
+    "response_text": "{\n  \"summary\": \"The module suffers from high-severity N+1 query patterns and SQL injection risks due to string-based query construction.\",\n  \"risks_for_callers\": [\n    \"The module uses inefficient N+1 queries.\",\n    \"The module is vulnerable to SQL injection.\"\n  ],\n  \"compound_risks\": [\n    \"Inefficient N+1 queries combined with SQL injection risks.\"\n  ]\n}"
+   },
+   {
+    "role": "category:correctness",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 2240,
+    "output_tokens": 101,
+    "prompt_eval_s": 172.57745,
+    "eval_s": 27.78227,
+    "wall_s": 200.74248599100065,
+    "prompt_chars": 7553,
+    "parse_ok": true,
+    "response_text": "{\n  \"analysis\": \"Line 33 calculates total dollars incorrectly by not dividing cents by 100.\",\n  \"findings\": [\n    {\n      \"line\": 33,\n      \"bug_class\": \"unit_mismatch\",\n      \"severity\": \"high\",\n      \"explanation\": \"unit_price_cents returns cents; total_dollars calculation needs division by 100.\"\n    }\n  ]\n}"
+   },
+   {
+    "role": "category:code_quality",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 1984,
+    "output_tokens": 37,
+    "prompt_eval_s": 7.551279,
+    "eval_s": 9.066843,
+    "wall_s": 16.678974771999492,
+    "prompt_chars": 6730,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Add type annotations to the return value of build_summary.\"}]}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 743,
+    "output_tokens": 142,
+    "prompt_eval_s": 53.204495,
+    "eval_s": 29.603652,
+    "wall_s": 82.8827017829999,
+    "prompt_chars": 2803,
+    "parse_ok": true,
+    "response_text": "{\n  \"summary\": \"This module has high-severity unit mismatch and missing type annotations. It inherits high risks from its dependencies regarding N+1 queries and SQL injection.\",\n  \"risks_for_callers\": [\n    \"Unit price calculation is incorrect (line 33).\",\n    \"Public function 'build_summary' lacks type annotations (line 46).\"\n  ],\n  \"compound_risks\": [\n    \"The unit mismatch (line 33) combined with risks from 'store.product_repository' and 'store.product_serializer' could lead to incorrect financial reporting and data integrity issues.\"\n  ]\n}"
+   },
+   {
+    "role": "repair",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 1378,
+    "output_tokens": 48,
+    "prompt_eval_s": 84.493294,
+    "eval_s": 9.231031,
+    "wall_s": 93.80278075699971,
+    "prompt_chars": 5133,
+    "parse_ok": true,
+    "response_text": "{\"search\": \"    total_dollars = subtotal_cents * TAX_MULTIPLIER\", \"replace\": \"    total_dollars = (subtotal_cents / 100) * TAX_MULTIPLIER\"}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.023,
+  "evidence": 0.49,
+  "total": 478.8
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "warm_rerun": {
+  "cache_hits": 9,
+  "modules": 9,
+  "llm_calls": 0,
+  "seconds": 0.49
+ },
+ "peak_ollama_rss_mb": 4607.7,
+ "ground_truth": {
+  "instance_id": "cmb-004-store-unit_mismatch-k5",
+  "domain": "store",
+  "bug_type": "unit_mismatch",
+  "n_distractors": 5,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": "store/product_controller.py",
+  "bug_line": 33,
+  "child_file": "store/product_service.py",
+  "tool_bugs": [
+   {
+    "bug_class": "sql_injection",
+    "file": "store/product_repository.py"
+   },
+   {
+    "bug_class": "missing_types",
+    "file": "store/product_controller.py"
+   }
+  ],
+  "flags": {
+   "sqli": true,
+   "nplus1": false,
+   "arch": false,
+   "missing_annotation": true
+  },
+  "handler_order": [
+   "none_dereference",
+   "argument_order",
+   "unit_mismatch",
+   "exception_mismatch"
+  ]
+ },
+ "instance_id": "cmb-004-store-unit_mismatch-k5"
+}

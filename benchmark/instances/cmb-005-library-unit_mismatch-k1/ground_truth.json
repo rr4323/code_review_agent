@@ -1,0 +1,34 @@
+{
+ "instance_id": "cmb-005-library-unit_mismatch-k1",
+ "domain": "library",
+ "bug_type": "unit_mismatch",
+ "n_distractors": 1,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": "library/book_controller.py",
+ "bug_line": 32,
+ "child_file": "library/book_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "n_plus_one",
+   "file": "library/book_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "library/book_serializer.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": true,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "none_dereference",
+  "exception_mismatch",
+  "unit_mismatch",
+  "argument_order"
+ ]
+}

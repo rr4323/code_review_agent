@@ -1,0 +1,38 @@
+{
+ "instance_id": "cmb-017-library-control-k1",
+ "domain": "library",
+ "bug_type": null,
+ "n_distractors": 1,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "library/book_repository.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "library/book_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "library/book_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "none_dereference",
+  "argument_order",
+  "exception_mismatch",
+  "unit_mismatch"
+ ]
+}

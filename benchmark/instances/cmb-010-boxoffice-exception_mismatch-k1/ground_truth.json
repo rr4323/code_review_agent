@@ -1,0 +1,38 @@
+{
+ "instance_id": "cmb-010-boxoffice-exception_mismatch-k1",
+ "domain": "boxoffice",
+ "bug_type": "exception_mismatch",
+ "n_distractors": 1,
+ "changed_files": [
+  "boxoffice/ticket_controller.py"
+ ],
+ "bug_file": "boxoffice/ticket_controller.py",
+ "bug_line": 20,
+ "child_file": "boxoffice/ticket_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "boxoffice/ticket_repository.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "boxoffice/ticket_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "boxoffice/ticket_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "argument_order",
+  "exception_mismatch",
+  "unit_mismatch",
+  "none_dereference"
+ ]
+}

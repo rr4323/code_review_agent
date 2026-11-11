@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-015-garage-argument_order-k1",
+ "domain": "garage",
+ "bug_type": "argument_order",
+ "n_distractors": 1,
+ "changed_files": [
+  "garage/part_controller.py"
+ ],
+ "bug_file": "garage/part_controller.py",
+ "bug_line": 23,
+ "child_file": "garage/part_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "missing_types",
+   "file": "garage/part_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "argument_order",
+  "none_dereference",
+  "unit_mismatch"
+ ]
+}

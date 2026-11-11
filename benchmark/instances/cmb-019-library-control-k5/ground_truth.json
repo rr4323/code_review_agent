@@ -1,0 +1,34 @@
+{
+ "instance_id": "cmb-019-library-control-k5",
+ "domain": "library",
+ "bug_type": null,
+ "n_distractors": 5,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "layer_violation",
+   "file": "library/book_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "library/book_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "argument_order",
+  "none_dereference",
+  "exception_mismatch",
+  "unit_mismatch"
+ ]
+}

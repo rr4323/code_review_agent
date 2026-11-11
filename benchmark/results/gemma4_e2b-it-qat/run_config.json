@@ -1,0 +1,103 @@
+{
+ "model_runtime": {
+  "backend": "ollama",
+  "model": "gemma4:e2b-it-qat",
+  "ollama_url": "http://127.0.0.1:11434",
+  "num_ctx": 8192,
+  "temperature": 0.0,
+  "seed": 7,
+  "max_output_tokens": 384,
+  "request_timeout_s": 600
+ },
+ "categories": {
+  "performance": {
+   "enabled": true
+  },
+  "security": {
+   "enabled": true
+  },
+  "code_quality": {
+   "enabled": true
+  },
+  "architecture": {
+   "enabled": true
+  },
+  "testing": {
+   "enabled": true
+  },
+  "correctness": {
+   "enabled": true
+  }
+ },
+ "spawn_policy": "evidence_gated",
+ "performance": {
+  "repetitions": 5,
+  "warmup_runs": 1,
+  "metrics": [
+   "wall_time",
+   "cpu_time",
+   "memory_peak"
+  ],
+  "baseline": {
+   "type": "previous_commit",
+   "regression_threshold_percent": 20
+  }
+ },
+ "guidelines": {
+  "architecture": [
+   {
+    "id": "ARCH-001",
+    "severity": "high",
+    "rule": "Business logic should remain outside presentation-layer components.",
+    "applies_to_layers": [
+     "presentation"
+    ],
+    "forbidden_identifiers": [
+     "tax_rate",
+     "discount_rate",
+     "margin",
+     "commission",
+     "loyalty"
+    ]
+   }
+  ],
+  "framework": [
+   {
+    "id": "FW-001",
+    "severity": "high",
+    "rule": "Avoid performing database queries directly inside serialization or presentation components.",
+    "applies_to_layers": [
+     "serialization",
+     "presentation"
+    ],
+    "forbidden_call_substrings": [
+     "execute",
+     "query",
+     "fetch_one",
+     "fetch_all",
+     "raw_sql",
+     "cursor"
+    ]
+   }
+  ],
+  "language": [
+   {
+    "id": "LANG-001",
+    "severity": "medium",
+    "rule": "Public functions and methods should provide explicit type information."
+   }
+  ]
+ },
+ "execution": {
+  "fail_on": [
+   "critical",
+   "high"
+  ],
+  "generate_report": true,
+  "generate_patch": true,
+  "report_formats": [
+   "json",
+   "markdown"
+  ]
+ }
+}

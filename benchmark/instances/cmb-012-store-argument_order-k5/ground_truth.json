@@ -1,0 +1,38 @@
+{
+ "instance_id": "cmb-012-store-argument_order-k5",
+ "domain": "store",
+ "bug_type": "argument_order",
+ "n_distractors": 5,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": "store/product_controller.py",
+ "bug_line": 33,
+ "child_file": "store/product_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "n_plus_one",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": true,
+  "arch": true,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "none_dereference",
+  "argument_order",
+  "unit_mismatch"
+ ]
+}

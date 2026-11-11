@@ -1,0 +1,34 @@
+{
+ "instance_id": "cmb-011-garage-exception_mismatch-k5",
+ "domain": "garage",
+ "bug_type": "exception_mismatch",
+ "n_distractors": 5,
+ "changed_files": [
+  "garage/part_controller.py"
+ ],
+ "bug_file": "garage/part_controller.py",
+ "bug_line": 41,
+ "child_file": "garage/part_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "n_plus_one",
+   "file": "garage/part_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "garage/part_serializer.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": true,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "argument_order",
+  "none_dereference",
+  "unit_mismatch",
+  "exception_mismatch"
+ ]
+}

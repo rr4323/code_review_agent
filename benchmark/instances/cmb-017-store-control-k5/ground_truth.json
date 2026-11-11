@@ -1,0 +1,42 @@
+{
+ "instance_id": "cmb-017-store-control-k5",
+ "domain": "store",
+ "bug_type": null,
+ "n_distractors": 5,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "store/product_repository.py"
+  },
+  {
+   "bug_class": "n_plus_one",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": true,
+  "arch": true,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "unit_mismatch",
+  "argument_order",
+  "none_dereference"
+ ]
+}

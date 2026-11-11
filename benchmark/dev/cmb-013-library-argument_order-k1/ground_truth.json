@@ -1,0 +1,25 @@
+{
+ "instance_id": "cmb-013-library-argument_order-k1",
+ "domain": "library",
+ "bug_type": "argument_order",
+ "n_distractors": 1,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": "library/book_controller.py",
+ "bug_line": 22,
+ "child_file": "library/book_service.py",
+ "tool_bugs": [],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "none_dereference",
+  "argument_order",
+  "unit_mismatch",
+  "exception_mismatch"
+ ]
+}

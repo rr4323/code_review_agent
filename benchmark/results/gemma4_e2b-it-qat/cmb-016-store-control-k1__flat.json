@@ -1,0 +1,280 @@
+{
+ "system": "flat",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.audit",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.audit"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.audit",
+    "store.product_repository"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 8
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 1,
+    "seconds": 0.011,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 1,
+    "seconds": 0.295,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 1,
+    "seconds": 0.295,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 0,
+    "seconds": 0.294,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.393,
+    "note": "1 passed in 0.03s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.389,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_repository",
+    "category": "performance",
+    "rule_id": "PERF-NPLUS1",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 33,
+    "message": "'fetchall()' inside a loop issues a query on every iteration (N+1 query pattern).",
+    "tool": "ast-query-in-loop",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_repository",
+    "category": "security",
+    "rule_id": "BANDIT-B608",
+    "severity": "high",
+    "file": "store/product_repository.py",
+    "line": 32,
+    "message": "hardcoded_sql_expressions: Possible SQL injection vector through string-based query construction.",
+    "tool": "bandit",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "code_quality",
+    "rule_id": "LANG-001",
+    "severity": "medium",
+    "file": "store/product_controller.py",
+    "line": 42,
+    "message": "Public function 'build_summary' lacks full type annotations.",
+    "tool": "ast-annotation-check",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 12,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 21,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 28,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 42,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {},
+ "compound_risks": [],
+ "repair": null,
+ "cache_hits": 0,
+ "findings": [
+  {
+   "module_id": "store.product_repository",
+   "file": "store/product_repository.py",
+   "line": 32,
+   "bug_class": "sql_injection",
+   "severity": "high",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The query in `search_products` uses f-string formatting to construct the SQL query with user-provided input (`name_fragment`), which is a potential SQL injection vector. This should be parameterized.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_repository",
+   "file": "store/product_repository.py",
+   "line": 33,
+   "bug_class": "sql_injection",
+   "severity": "high",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The tool evidence indicates a potential N+1 query pattern if this function is called inside a loop, as it executes a query for every item in the list returned by `fetchall()`.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  }
+ ],
+ "status": "FAILED_QUALITY_GATE",
+ "usage": {
+  "llm_calls": 1,
+  "prompt_tokens_evaluated": 2678,
+  "output_tokens": 203,
+  "prompt_chars_sent": 8090,
+  "max_prompt_chars": 8090,
+  "llm_wall_s": 168.7,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "flat",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 2678,
+    "output_tokens": 203,
+    "prompt_eval_s": 138.433999,
+    "eval_s": 30.141153,
+    "wall_s": 168.70427026200014,
+    "prompt_chars": 8090,
+    "parse_ok": true,
+    "response_text": "{\n  \"findings\": [\n    {\n      \"file\": \"store/product_repository.py\",\n      \"line\": 32,\n      \"bug_class\": \"sql_injection\",\n      \"severity\": \"high\",\n      \"explanation\": \"The query in `search_products` uses f-string formatting to construct the SQL query with user-provided input (`name_fragment`), which is a potential SQL injection vector. This should be parameterized.\"\n    },\n    {\n      \"file\": \"store/product_repository.py\",\n      \"line\": 33,\n      \"bug_class\": \"sql_injection\",\n      \"severity\": \"high\",\n      \"explanation\": \"The tool evidence indicates a potential N+1 query pattern if this function is called inside a loop, as it executes a query for every item in the list returned by `fetchall()`.\"\n    }\n  ]\n}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.011,
+  "evidence": 0.404,
+  "total": 169.12
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "peak_ollama_rss_mb": 4885.5,
+ "ground_truth": {
+  "instance_id": "cmb-016-store-control-k1",
+  "domain": "store",
+  "bug_type": null,
+  "n_distractors": 1,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": null,
+  "bug_line": null,
+  "child_file": null,
+  "tool_bugs": [
+   {
+    "bug_class": "sql_injection",
+    "file": "store/product_repository.py"
+   },
+   {
+    "bug_class": "missing_types",
+    "file": "store/product_controller.py"
+   }
+  ],
+  "flags": {
+   "sqli": true,
+   "nplus1": false,
+   "arch": false,
+   "missing_annotation": true
+  },
+  "handler_order": [
+   "exception_mismatch",
+   "unit_mismatch",
+   "argument_order",
+   "none_dereference"
+  ]
+ },
+ "instance_id": "cmb-016-store-control-k1"
+}

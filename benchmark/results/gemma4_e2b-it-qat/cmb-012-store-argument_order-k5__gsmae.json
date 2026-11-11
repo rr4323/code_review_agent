@@ -1,0 +1,1062 @@
+{
+ "system": "gsmae",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.audit",
+   "store.formatting",
+   "store.ids",
+   "store.pricing_rules",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service",
+   "store.validation"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.audit"
+   ],
+   [
+    "store.product_controller",
+    "store.formatting"
+   ],
+   [
+    "store.product_controller",
+    "store.ids"
+   ],
+   [
+    "store.product_controller",
+    "store.pricing_rules"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.audit",
+    "store.formatting",
+    "store.ids",
+    "store.pricing_rules",
+    "store.product_repository",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 12
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 1,
+    "seconds": 0.013,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 0,
+    "seconds": 0.379,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 0,
+    "seconds": 0.379,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 2,
+    "seconds": 0.378,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.507,
+    "note": "1 passed in 0.03s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.502,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_serializer",
+    "category": "performance",
+    "rule_id": "PERF-NPLUS1",
+    "severity": "high",
+    "file": "store/product_serializer.py",
+    "line": 12,
+    "message": "'get_product()' inside a loop calls a child-module function that issues a query on every iteration (N+1 query pattern).",
+    "tool": "ast-query-in-loop",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "architecture",
+    "rule_id": "ARCH-001",
+    "severity": "high",
+    "file": "store/product_controller.py",
+    "line": 40,
+    "message": "Business logic should remain outside presentation-layer components. (business variable 'tax_rate' computed in presentation layer)",
+    "tool": "ast-rule-engine",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_serializer",
+    "category": "architecture",
+    "rule_id": "FW-001",
+    "severity": "high",
+    "file": "store/product_serializer.py",
+    "line": 12,
+    "message": "Avoid performing database queries directly inside serialization or presentation components. ('get_product()' reaches the database from the serialization layer)",
+    "tool": "ast-rule-engine",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 14,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 31,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 37,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 45,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {
+  "store.audit": {
+   "module_id": "store.audit",
+   "layer": "data",
+   "merkle_hash": "db0d75085b08ccfa",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "record_event",
+     "lineno": 4,
+     "signature": "def record_event(log: list, kind: str, payload: dict) -> None",
+     "doc": "Append an event to the audit log.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.audit (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.formatting": {
+   "module_id": "store.formatting",
+   "layer": "data",
+   "merkle_hash": "6a203a0409965e5c",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "format_dollars",
+     "lineno": 4,
+     "signature": "def format_dollars(amount: float) -> str",
+     "doc": "Format an amount given in DOLLARS, e.g. 12.5 -> '$12.50'.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.formatting (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.ids": {
+   "module_id": "store.ids",
+   "layer": "data",
+   "merkle_hash": "f2ded0104cc4cdd9",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "parse_id",
+     "lineno": 5,
+     "signature": "def parse_id(raw: str) -> Optional[int]",
+     "doc": "Return the integer id, or None when raw is not a positive integer.",
+     "may_return_none": true,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.ids (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.pricing_rules": {
+   "module_id": "store.pricing_rules",
+   "layer": "data",
+   "merkle_hash": "a00522b5f90f38e5",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "bulk_discount_pct",
+     "lineno": 4,
+     "signature": "def bulk_discount_pct(quantity: int) -> int",
+     "doc": "Return the bulk discount in PERCENT (0-100) for a quantity.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.pricing_rules (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.product_repository": {
+   "module_id": "store.product_repository",
+   "layer": "data",
+   "merkle_hash": "539d2bf0b82f0cd7",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "get_product",
+     "lineno": 6,
+     "signature": "def get_product(conn: sqlite3.Connection, product_id: int) -> Optional[dict]",
+     "doc": "Return the product as a dict, or None when no product has this id.",
+     "may_return_none": true,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "set_stock",
+     "lineno": 16,
+     "signature": "def set_stock(conn: sqlite3.Connection, product_id: int, stock: int) -> None",
+     "doc": "Overwrite the stock level of a product.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "get_balance",
+     "lineno": 21,
+     "signature": "def get_balance(conn: sqlite3.Connection, customer_id: int) -> int",
+     "doc": "Return the credit balance of a customer (0 if unknown).",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "set_balance",
+     "lineno": 27,
+     "signature": "def set_balance(conn: sqlite3.Connection, customer_id: int, balance: int) -> None",
+     "doc": "Overwrite the credit balance of a customer.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "search_products",
+     "lineno": 30,
+     "signature": "def search_products(conn: sqlite3.Connection, name_fragment: str) -> list",
+     "doc": "Return ids of products whose name contains the fragment.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.product_repository (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.validation": {
+   "module_id": "store.validation",
+   "layer": "data",
+   "merkle_hash": "2514aab21feff41f",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "require_positive",
+     "lineno": 4,
+     "signature": "def require_positive(value: int, name: str) -> int",
+     "doc": "Return value if it is > 0, otherwise raise ValueError.",
+     "may_return_none": false,
+     "raises": [
+      "ValueError"
+     ],
+     "annotated": true
+    }
+   ],
+   "summary": "store.validation (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.product_serializer": {
+   "module_id": "store.product_serializer",
+   "layer": "serialization",
+   "merkle_hash": "64f5aeebf7e845b1",
+   "spawned": [
+    "architecture",
+    "performance"
+   ],
+   "skipped": [
+    "correctness",
+    "code_quality",
+    "security",
+    "testing"
+   ],
+   "children_merged": [
+    "store.product_repository"
+   ],
+   "local_findings": [
+    {
+     "module_id": "store.product_serializer",
+     "file": "store/product_serializer.py",
+     "line": 12,
+     "bug_class": "layer_violation",
+     "severity": "high",
+     "category": "architecture",
+     "rule_id": "FW-001",
+     "explanation": "Avoid performing database queries directly inside serialization or presentation components. ('get_product()' reaches the database from the serialization layer)",
+     "fix": "Move the product retrieval logic outside of serialize_products, perhaps to a service layer, to decouple serialization from direct database access.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_serializer",
+     "file": "store/product_serializer.py",
+     "line": 12,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'get_product()' inside a loop calls a child-module function that issues a query on every iteration (N+1 query pattern).",
+     "fix": "Batch fetch products instead of querying one by one in a loop.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "product_to_dict",
+     "lineno": 7,
+     "signature": "def product_to_dict(item: dict) -> dict",
+     "doc": "Convert a repository row into a public payload.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "serialize_products",
+     "lineno": 10,
+     "signature": "def serialize_products(conn: sqlite3.Connection, ids: list) -> list",
+     "doc": "Serialize the products with the given ids.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "The serialization layer violates separation of concerns by performing database queries, leading to potential N+1 query issues.",
+   "risks_for_callers": [
+    "This module performs database queries directly, which should be avoided in serialization layers."
+   ],
+   "compound_risks": [
+    "N+1 query pattern risk: Calling this module within a loop will result in an N+1 query problem due to the direct database access."
+   ],
+   "max_severity": "high"
+  },
+  "store.product_service": {
+   "module_id": "store.product_service",
+   "layer": "data",
+   "merkle_hash": "a357dd9a3486a17d",
+   "spawned": [],
+   "skipped": [
+    "correctness",
+    "architecture",
+    "code_quality",
+    "performance",
+    "security",
+    "testing"
+   ],
+   "children_merged": [
+    "store.product_repository"
+   ],
+   "local_findings": [],
+   "inherited_findings": [],
+   "contracts": [
+    {
+     "name": "unit_price_cents",
+     "lineno": 11,
+     "signature": "def unit_price_cents(conn: sqlite3.Connection, product_id: int) -> int",
+     "doc": "Return the unit price of the product in integer CENTS (e.g. 1999 means $19.99).",
+     "may_return_none": false,
+     "raises": [
+      "KeyError"
+     ],
+     "annotated": true
+    },
+    {
+     "name": "reserve_stock",
+     "lineno": 19,
+     "signature": "def reserve_stock(conn: sqlite3.Connection, product_id: int, quantity: int) -> int",
+     "doc": "Reserve `quantity` units and return the remaining stock.  Raises OutOfStockError when quantity exceeds the available stock.",
+     "may_return_none": false,
+     "raises": [
+      "KeyError",
+      "OutOfStockError"
+     ],
+     "annotated": true
+    },
+    {
+     "name": "transfer_credit",
+     "lineno": 34,
+     "signature": "def transfer_credit(conn: sqlite3.Connection, from_account: int, to_account: int, amount: int) -> None",
+     "doc": "Move `amount` credits FROM `from_account` TO `to_account`.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "store.product_service (data): clean (0 blocking/semantic findings).",
+   "risks_for_callers": [],
+   "compound_risks": [],
+   "max_severity": "none"
+  },
+  "store.product_controller": {
+   "module_id": "store.product_controller",
+   "layer": "presentation",
+   "merkle_hash": "cbc1b92ce560ad8a",
+   "spawned": [
+    "correctness",
+    "architecture",
+    "testing"
+   ],
+   "skipped": [
+    "code_quality",
+    "performance",
+    "security"
+   ],
+   "children_merged": [
+    "store.audit",
+    "store.formatting",
+    "store.ids",
+    "store.pricing_rules",
+    "store.product_repository",
+    "store.product_serializer",
+    "store.product_service",
+    "store.validation"
+   ],
+   "local_findings": [
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 33,
+     "bug_class": "argument_order",
+     "severity": "critical",
+     "category": "correctness",
+     "rule_id": "",
+     "explanation": "The order of `payee_id` and `payer_id` is reversed compared to the service contract.",
+     "fix": "",
+     "related_module": "",
+     "source": "llm"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 40,
+     "bug_class": "layer_violation",
+     "severity": "high",
+     "category": "architecture",
+     "rule_id": "ARCH-001",
+     "explanation": "Business logic should remain outside presentation-layer components. (business variable 'tax_rate' computed in presentation layer)",
+     "fix": "Move tax rate calculation to the service layer.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 14,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_reserve' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 31,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_payment' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 37,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'handle_quote' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    },
+    {
+     "module_id": "store.product_controller",
+     "file": "store/product_controller.py",
+     "line": 45,
+     "bug_class": "untested",
+     "severity": "low",
+     "category": "testing",
+     "rule_id": "TEST-001",
+     "explanation": "Entry point 'build_summary' is not referenced by any test.",
+     "fix": "",
+     "related_module": "",
+     "source": "tool"
+    }
+   ],
+   "inherited_findings": [
+    {
+     "module_id": "store.product_serializer",
+     "file": "store/product_serializer.py",
+     "line": 12,
+     "bug_class": "layer_violation",
+     "severity": "high",
+     "category": "architecture",
+     "rule_id": "FW-001",
+     "explanation": "Avoid performing database queries directly inside serialization or presentation components. ('get_product()' reaches the database from the serialization layer)",
+     "fix": "Move the product retrieval logic outside of serialize_products, perhaps to a service layer, to decouple serialization from direct database access.",
+     "related_module": "",
+     "source": "tool+llm"
+    },
+    {
+     "module_id": "store.product_serializer",
+     "file": "store/product_serializer.py",
+     "line": 12,
+     "bug_class": "n_plus_one",
+     "severity": "high",
+     "category": "performance",
+     "rule_id": "PERF-NPLUS1",
+     "explanation": "'get_product()' inside a loop calls a child-module function that issues a query on every iteration (N+1 query pattern).",
+     "fix": "Batch fetch products instead of querying one by one in a loop.",
+     "related_module": "",
+     "source": "tool+llm"
+    }
+   ],
+   "contracts": [
+    {
+     "name": "handle_reserve",
+     "lineno": 14,
+     "signature": "def handle_reserve(conn: sqlite3.Connection, product_id: int, quantity: int) -> dict",
+     "doc": "Return {\"status\": 200, \"remaining\": n}, or {\"status\": 409} when stock is insufficient.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_get_product",
+     "lineno": 23,
+     "signature": "def handle_get_product(conn: sqlite3.Connection, product_id: int) -> dict",
+     "doc": "Return {\"status\": 200, \"name\": ...}, or {\"status\": 404} when the product does not exist.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_payment",
+     "lineno": 31,
+     "signature": "def handle_payment(conn: sqlite3.Connection, payer_id: int, payee_id: int, amount: int) -> dict",
+     "doc": "Move `amount` credits from the payer to the payee and return {\"status\": 200}.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "handle_quote",
+     "lineno": 37,
+     "signature": "def handle_quote(conn: sqlite3.Connection, product_id: int, quantity: int) -> dict",
+     "doc": "Return {\"status\": 200, \"total_dollars\": <float>} for `quantity` units including tax.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    },
+    {
+     "name": "build_summary",
+     "lineno": 45,
+     "signature": "def build_summary(raw_id: str, quantity: int, subtotal_dollars: float, events: list) -> dict",
+     "doc": "Assemble a summary payload for the order screen.",
+     "may_return_none": false,
+     "raises": [],
+     "annotated": true
+    }
+   ],
+   "summary": "Critical argument order reversal, layer violation due to business logic in presentation layer, and several untested entry points.",
+   "risks_for_callers": [
+    "Argument order for `payee_id` and `payer_id` is reversed.",
+    "Business logic (tax_rate computation) is in the presentation layer.",
+    "Entry points `handle_reserve`, `handle_payment`, `handle_quote`, and `build_summary` are untested."
+   ],
+   "compound_risks": [],
+   "max_severity": "critical"
+  }
+ },
+ "compound_risks": [
+  "N+1 query pattern risk: Calling this module within a loop will result in an N+1 query problem due to the direct database access."
+ ],
+ "repair": {
+  "module_id": "store.product_controller",
+  "file": "store/product_controller.py",
+  "finding_line": 33,
+  "applied": true,
+  "diff": "--- a/store/product_controller.py\n+++ b/store/product_controller.py\n@@ -30,7 +30,7 @@\n \n def handle_payment(conn: sqlite3.Connection, payer_id: int, payee_id: int, amount: int) -> dict:\n     \"\"\"Move `amount` credits from the payer to the payee and return {\"status\": 200}.\"\"\"\n-    service.transfer_credit(conn, payee_id, payer_id, amount)\n+    service.transfer_credit(conn, payer_id, payee_id, amount)\n     return {\"status\": 200}\n \n \n",
+  "tests_passed": true,
+  "test_tail": ".....                                                                    [100%]\n5 passed in 0.04s",
+  "attempts": 1,
+  "ast_gate": {
+   "syntax_valid": true,
+   "safe": true,
+   "error": "",
+   "blocked_imports": [],
+   "blocked_calls": []
+  },
+  "sandbox_telemetry": {
+   "sandbox_enabled": true,
+   "isolated_filesystem": true,
+   "env_scrubbed": true,
+   "env_keys_stripped": 76,
+   "network_blocked": true,
+   "outside_writes_blocked": true,
+   "rlimit_cpu_s": 30,
+   "rlimit_memory_mb": 768,
+   "rlimit_fsize_mb": 16,
+   "rlimit_nofile": 256,
+   "host_repo_digest_before": "0fa3f0e1230ce706",
+   "host_repo_digest_after": "0fa3f0e1230ce706",
+   "host_repo_unmodified": true
+  },
+  "target_finding": {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 33,
+   "bug_class": "argument_order",
+   "severity": "critical",
+   "category": "correctness",
+   "rule_id": "",
+   "explanation": "The order of `payee_id` and `payer_id` is reversed compared to the service contract.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm"
+  }
+ },
+ "cache_hits": 0,
+ "summary": "Critical argument order reversal, layer violation due to business logic in presentation layer, and several untested entry points.",
+ "findings": [
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 33,
+   "bug_class": "argument_order",
+   "severity": "critical",
+   "category": "correctness",
+   "rule_id": "",
+   "explanation": "The order of `payee_id` and `payer_id` is reversed compared to the service contract.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 40,
+   "bug_class": "layer_violation",
+   "severity": "high",
+   "category": "architecture",
+   "rule_id": "ARCH-001",
+   "explanation": "Business logic should remain outside presentation-layer components. (business variable 'tax_rate' computed in presentation layer)",
+   "fix": "Move tax rate calculation to the service layer.",
+   "related_module": "",
+   "source": "tool+llm"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 14,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_reserve' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 31,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_payment' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 37,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'handle_quote' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 45,
+   "bug_class": "untested",
+   "severity": "low",
+   "category": "testing",
+   "rule_id": "TEST-001",
+   "explanation": "Entry point 'build_summary' is not referenced by any test.",
+   "fix": "",
+   "related_module": "",
+   "source": "tool"
+  },
+  {
+   "module_id": "store.product_serializer",
+   "file": "store/product_serializer.py",
+   "line": 12,
+   "bug_class": "layer_violation",
+   "severity": "high",
+   "category": "architecture",
+   "rule_id": "FW-001",
+   "explanation": "Avoid performing database queries directly inside serialization or presentation components. ('get_product()' reaches the database from the serialization layer)",
+   "fix": "Move the product retrieval logic outside of serialize_products, perhaps to a service layer, to decouple serialization from direct database access.",
+   "related_module": "",
+   "source": "tool+llm"
+  },
+  {
+   "module_id": "store.product_serializer",
+   "file": "store/product_serializer.py",
+   "line": 12,
+   "bug_class": "n_plus_one",
+   "severity": "high",
+   "category": "performance",
+   "rule_id": "PERF-NPLUS1",
+   "explanation": "'get_product()' inside a loop calls a child-module function that issues a query on every iteration (N+1 query pattern).",
+   "fix": "Batch fetch products instead of querying one by one in a loop.",
+   "related_module": "",
+   "source": "tool+llm"
+  }
+ ],
+ "status": "FAILED_QUALITY_GATE",
+ "usage": {
+  "llm_calls": 7,
+  "prompt_tokens_evaluated": 6725,
+  "output_tokens": 520,
+  "prompt_chars_sent": 27068,
+  "max_prompt_chars": 7325,
+  "llm_wall_s": 270.25,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "category:architecture",
+    "module_id": "store.product_serializer",
+    "prompt_tokens": 602,
+    "output_tokens": 50,
+    "prompt_eval_s": 20.506559,
+    "eval_s": 6.735522,
+    "wall_s": 27.274579930999607,
+    "prompt_chars": 2234,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Move the product retrieval logic outside of serialize_products, perhaps to a service layer, to decouple serialization from direct database access.\"}]}"
+   },
+   {
+    "role": "category:performance",
+    "module_id": "store.product_serializer",
+    "prompt_tokens": 607,
+    "output_tokens": 38,
+    "prompt_eval_s": 22.983842,
+    "eval_s": 5.528311,
+    "wall_s": 28.530448728999545,
+    "prompt_chars": 2198,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Batch fetch products instead of querying one by one in a loop.\"}]}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_serializer",
+    "prompt_tokens": 301,
+    "output_tokens": 108,
+    "prompt_eval_s": 10.652171,
+    "eval_s": 14.134026,
+    "wall_s": 24.81374982500074,
+    "prompt_chars": 1186,
+    "parse_ok": true,
+    "response_text": "{\n  \"summary\": \"The serialization layer violates separation of concerns by performing database queries, leading to potential N+1 query issues.\",\n  \"risks_for_callers\": [\n    \"This module performs database queries directly, which should be avoided in serialization layers.\"\n  ],\n  \"compound_risks\": [\n    \"N+1 query pattern risk: Calling this module within a loop will result in an N+1 query problem due to the direct database access.\"\n  ]\n}"
+   },
+   {
+    "role": "category:correctness",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 2180,
+    "output_tokens": 120,
+    "prompt_eval_s": 90.499546,
+    "eval_s": 24.05974,
+    "wall_s": 114.62074045000008,
+    "prompt_chars": 7325,
+    "parse_ok": true,
+    "response_text": "{\n  \"analysis\": \"The call to `service.transfer_credit` passes `payee_id` as the first argument instead of `from_account` as expected by the service contract.\",\n  \"findings\": [\n    {\n      \"line\": 33,\n      \"bug_class\": \"argument_order\",\n      \"severity\": \"critical\",\n      \"explanation\": \"The order of `payee_id` and `payer_id` is reversed compared to the service contract.\"\n    }\n  ]\n}"
+   },
+   {
+    "role": "category:architecture",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 1966,
+    "output_tokens": 34,
+    "prompt_eval_s": 5.865198,
+    "eval_s": 5.948915,
+    "wall_s": 11.854064919999473,
+    "prompt_chars": 6643,
+    "parse_ok": true,
+    "response_text": "{\"verdicts\": [{\"index\": 0, \"is_real\": true, \"fix\": \"Move tax rate calculation to the service layer.\"}]}"
+   },
+   {
+    "role": "merge",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 708,
+    "output_tokens": 122,
+    "prompt_eval_s": 26.872451,
+    "eval_s": 18.509394,
+    "wall_s": 45.424446703000285,
+    "prompt_chars": 2637,
+    "parse_ok": true,
+    "response_text": "{\n  \"summary\": \"Critical argument order reversal, layer violation due to business logic in presentation layer, and several untested entry points.\",\n  \"risks_for_callers\": [\n    \"Argument order for `payee_id` and `payer_id` is reversed.\",\n    \"Business logic (tax_rate computation) is in the presentation layer.\",\n    \"Entry points `handle_reserve`, `handle_payment`, `handle_quote`, and `build_summary` are untested.\"\n  ],\n  \"compound_risks\": []\n}"
+   },
+   {
+    "role": "repair",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 361,
+    "output_tokens": 48,
+    "prompt_eval_s": 12.057889,
+    "eval_s": 5.631972,
+    "wall_s": 17.729106376000345,
+    "prompt_chars": 1196,
+    "parse_ok": true,
+    "response_text": "{\"search\": \"    service.transfer_credit(conn, payee_id, payer_id, amount)\", \"replace\": \"    service.transfer_credit(conn, payer_id, payee_id, amount)\"}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.019,
+  "evidence": 0.52,
+  "total": 324.71
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "warm_rerun": {
+  "cache_hits": 9,
+  "modules": 9,
+  "llm_calls": 0,
+  "seconds": 0.49
+ },
+ "peak_ollama_rss_mb": 4843.2,
+ "ground_truth": {
+  "instance_id": "cmb-012-store-argument_order-k5",
+  "domain": "store",
+  "bug_type": "argument_order",
+  "n_distractors": 5,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": "store/product_controller.py",
+  "bug_line": 33,
+  "child_file": "store/product_service.py",
+  "tool_bugs": [
+   {
+    "bug_class": "n_plus_one",
+    "file": "store/product_serializer.py"
+   },
+   {
+    "bug_class": "layer_violation",
+    "file": "store/product_serializer.py"
+   },
+   {
+    "bug_class": "layer_violation",
+    "file": "store/product_controller.py"
+   }
+  ],
+  "flags": {
+   "sqli": false,
+   "nplus1": true,
+   "arch": true,
+   "missing_annotation": false
+  },
+  "handler_order": [
+   "exception_mismatch",
+   "none_dereference",
+   "argument_order",
+   "unit_mismatch"
+  ]
+ },
+ "instance_id": "cmb-012-store-argument_order-k5"
+}

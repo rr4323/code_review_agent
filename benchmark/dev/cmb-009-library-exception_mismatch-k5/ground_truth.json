@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-009-library-exception_mismatch-k5",
+ "domain": "library",
+ "bug_type": "exception_mismatch",
+ "n_distractors": 5,
+ "changed_files": [
+  "library/book_controller.py"
+ ],
+ "bug_file": "library/book_controller.py",
+ "bug_line": 32,
+ "child_file": "library/book_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "layer_violation",
+   "file": "library/book_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": false,
+  "arch": true,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "argument_order",
+  "none_dereference",
+  "exception_mismatch",
+  "unit_mismatch"
+ ]
+}

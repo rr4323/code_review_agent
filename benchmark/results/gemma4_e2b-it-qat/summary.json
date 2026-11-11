@@ -1,0 +1,134 @@
+{
+ "flat": {
+  "n_bug": 4,
+  "n_control": 1,
+  "recall_strict": 0.0,
+  "recall_file": 0.0,
+  "recall_by_type": {
+   "argument_order": 0.0,
+   "exception_mismatch": 0.0,
+   "none_dereference": 0.0,
+   "unit_mismatch": 0.0
+  },
+  "recall_by_k": {
+   "1": 0.0,
+   "5": 0.0
+  },
+  "semantic_fp_per_instance": 1.4,
+  "control_fp_per_instance": 0.0,
+  "control_clean_rate": 1.0,
+  "precision": 0.0,
+  "tool_bug_recall": 0.25,
+  "llm_calls": 1.0,
+  "prompt_tokens": 2887.2,
+  "output_tokens": 230.2,
+  "max_prompt_chars": 10059,
+  "mean_max_prompt_chars": 8708.6,
+  "llm_wall_s": 152.418,
+  "total_s": 152.818,
+  "parse_fail_total": 0,
+  "peak_rss_mb": 4885.5
+ },
+ "gsmae": {
+  "n_bug": 4,
+  "n_control": 1,
+  "recall_strict": 1.0,
+  "recall_file": 1.0,
+  "recall_by_type": {
+   "argument_order": 1.0,
+   "exception_mismatch": 1.0,
+   "none_dereference": 1.0,
+   "unit_mismatch": 1.0
+  },
+  "recall_by_k": {
+   "1": 1.0,
+   "5": 1.0
+  },
+  "semantic_fp_per_instance": 0.0,
+  "control_fp_per_instance": 0.0,
+  "control_clean_rate": 1.0,
+  "precision": 1.0,
+  "tool_bug_recall": 1.0,
+  "llm_calls": 6.8,
+  "prompt_tokens": 5727.6,
+  "output_tokens": 506.8,
+  "max_prompt_chars": 7553,
+  "mean_max_prompt_chars": 6479.2,
+  "llm_wall_s": 271.502,
+  "total_s": 283.224,
+  "parse_fail_total": 0,
+  "peak_rss_mb": 4938.3,
+  "repair": {
+   "bug_instances": 4,
+   "attempted": 4,
+   "attempted_on_true_bug": 4,
+   "applied": 4,
+   "hidden_tests_pass_bug_instances": 4,
+   "resolved_rate_over_bug_instances": 1.0
+  },
+  "warm_rerun": {
+   "all_nodes_cached": true,
+   "llm_calls_total": 0
+  }
+ },
+ "gsmae_no_msg": {
+  "n_bug": 4,
+  "n_control": 1,
+  "recall_strict": 0.0,
+  "recall_file": 0.0,
+  "recall_by_type": {
+   "argument_order": 0.0,
+   "exception_mismatch": 0.0,
+   "none_dereference": 0.0,
+   "unit_mismatch": 0.0
+  },
+  "recall_by_k": {
+   "1": 0.0,
+   "5": 0.0
+  },
+  "semantic_fp_per_instance": 0.0,
+  "control_fp_per_instance": 0.0,
+  "control_clean_rate": 1.0,
+  "precision": 0.0,
+  "tool_bug_recall": 1.0,
+  "llm_calls": 5.2,
+  "prompt_tokens": 3698.0,
+  "output_tokens": 168.0,
+  "max_prompt_chars": 3300,
+  "mean_max_prompt_chars": 2937.0,
+  "llm_wall_s": 104.444,
+  "total_s": 104.954,
+  "parse_fail_total": 0,
+  "peak_rss_mb": 4914.4
+ },
+ "tools_only": {
+  "n_bug": 4,
+  "n_control": 1,
+  "recall_strict": 0.0,
+  "recall_file": 0.0,
+  "recall_by_type": {
+   "argument_order": 0.0,
+   "exception_mismatch": 0.0,
+   "none_dereference": 0.0,
+   "unit_mismatch": 0.0
+  },
+  "recall_by_k": {
+   "1": 0.0,
+   "5": 0.0
+  },
+  "semantic_fp_per_instance": 0.0,
+  "control_fp_per_instance": 0.0,
+  "control_clean_rate": 1.0,
+  "precision": 0.0,
+  "tool_bug_recall": 1.0,
+  "llm_calls": 0.0,
+  "prompt_tokens": 0.0,
+  "output_tokens": 0.0,
+  "max_prompt_chars": 0,
+  "mean_max_prompt_chars": 0.0,
+  "llm_wall_s": 0.0,
+  "total_s": 0.41,
+  "parse_fail_total": 0,
+  "peak_rss_mb": 4843.2
+ }
+}

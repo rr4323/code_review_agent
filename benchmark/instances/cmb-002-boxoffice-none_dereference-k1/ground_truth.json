@@ -1,0 +1,30 @@
+{
+ "instance_id": "cmb-002-boxoffice-none_dereference-k1",
+ "domain": "boxoffice",
+ "bug_type": "none_dereference",
+ "n_distractors": 1,
+ "changed_files": [
+  "boxoffice/ticket_controller.py"
+ ],
+ "bug_file": "boxoffice/ticket_controller.py",
+ "bug_line": 15,
+ "child_file": "boxoffice/ticket_repository.py",
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "boxoffice/ticket_repository.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": false,
+  "arch": false,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "none_dereference",
+  "exception_mismatch",
+  "argument_order",
+  "unit_mismatch"
+ ]
+}

@@ -1,0 +1,321 @@
+{
+ "system": "flat",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.audit",
+   "store.formatting",
+   "store.ids",
+   "store.pricing_rules",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service",
+   "store.validation"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.audit"
+   ],
+   [
+    "store.product_controller",
+    "store.formatting"
+   ],
+   [
+    "store.product_controller",
+    "store.ids"
+   ],
+   [
+    "store.product_controller",
+    "store.pricing_rules"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.audit",
+    "store.formatting",
+    "store.ids",
+    "store.pricing_rules",
+    "store.product_repository",
+    "store.validation"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 12
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 1,
+    "seconds": 0.012,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 0,
+    "seconds": 0.244,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 0,
+    "seconds": 0.244,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 2,
+    "seconds": 0.242,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.296,
+    "note": "1 passed in 0.02s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.291,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_serializer",
+    "category": "performance",
+    "rule_id": "PERF-NPLUS1",
+    "severity": "high",
+    "file": "store/product_serializer.py",
+    "line": 12,
+    "message": "'get_product()' inside a loop calls a child-module function that issues a query on every iteration (N+1 query pattern).",
+    "tool": "ast-query-in-loop",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "architecture",
+    "rule_id": "ARCH-001",
+    "severity": "high",
+    "file": "store/product_controller.py",
+    "line": 40,
+    "message": "Business logic should remain outside presentation-layer components. (business variable 'tax_rate' computed in presentation layer)",
+    "tool": "ast-rule-engine",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_serializer",
+    "category": "architecture",
+    "rule_id": "FW-001",
+    "severity": "high",
+    "file": "store/product_serializer.py",
+    "line": 12,
+    "message": "Avoid performing database queries directly inside serialization or presentation components. ('get_product()' reaches the database from the serialization layer)",
+    "tool": "ast-rule-engine",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 14,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 31,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 37,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 45,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {},
+ "compound_risks": [],
+ "repair": null,
+ "cache_hits": 0,
+ "findings": [
+  {
+   "module_id": "store.product_serializer",
+   "file": "store/product_serializer.py",
+   "line": 12,
+   "bug_class": "unit_mismatch",
+   "severity": "high",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The function `serialize_products` calls `repository.get_product(conn, i)` inside a list comprehension. This results in an N+1 query pattern where a database query is executed for every product ID in the list, which is inefficient. The tool evidence flags this as a performance issue (PERF-NPLUS1) and a violation of the principle to avoid database queries in serialization layers (FW-001).",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 40,
+   "bug_class": "unit_mismatch",
+   "severity": "medium",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The calculation of `tax_rate` (0.10) is hardcoded in the presentation layer (`handle_quote`). Business logic, such as tax rates, should ideally be defined and managed in a service or configuration layer, not directly in the controller.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 45,
+   "bug_class": "unit_mismatch",
+   "severity": "medium",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The function `build_summary` calls `audit.record_event` and `validation.require_positive`. The validation step `validation.require_positive(quantity, ",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  }
+ ],
+ "status": "FAILED_QUALITY_GATE",
+ "usage": {
+  "llm_calls": 1,
+  "prompt_tokens_evaluated": 3307,
+  "output_tokens": 310,
+  "prompt_chars_sent": 10059,
+  "max_prompt_chars": 10059,
+  "llm_wall_s": 191.4,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "flat",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 3307,
+    "output_tokens": 310,
+    "prompt_eval_s": 140.67085,
+    "eval_s": 50.635141,
+    "wall_s": 191.40096808600083,
+    "prompt_chars": 10059,
+    "parse_ok": true,
+    "response_text": "{\"findings\": [{\"file\": \"store/product_serializer.py\", \"line\": 12, \"bug_class\": \"unit_mismatch\", \"severity\": \"high\", \"explanation\": \"The function `serialize_products` calls `repository.get_product(conn, i)` inside a list comprehension. This results in an N+1 query pattern where a database query is executed for every product ID in the list, which is inefficient. The tool evidence flags this as a performance issue (PERF-NPLUS1) and a violation of the principle to avoid database queries in serialization layers (FW-001).\"}, {\"file\": \"store/product_controller.py\", \"line\": 40, \"bug_class\": \"unit_mismatch\", \"severity\": \"medium\", \"explanation\": \"The calculation of `tax_rate` (0.10) is hardcoded in the presentation layer (`handle_quote`). Business logic, such as tax rates, should ideally be defined and managed in a service or configuration layer, not directly in the controller.\"}, {\"file\": \"store/product_controller.py\", \"line\": 45, \"bug_class\": \"unit_mismatch\", \"severity\": \"medium\", \"explanation\": \"The function `build_summary` calls `audit.record_event` and `validation.require_positive`. The validation step `validation.require_positive(quantity, \"\n    }\n    ]\n}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.019,
+  "evidence": 0.309,
+  "total": 191.73
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "peak_ollama_rss_mb": 4762.9,
+ "ground_truth": {
+  "instance_id": "cmb-012-store-argument_order-k5",
+  "domain": "store",
+  "bug_type": "argument_order",
+  "n_distractors": 5,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": "store/product_controller.py",
+  "bug_line": 33,
+  "child_file": "store/product_service.py",
+  "tool_bugs": [
+   {
+    "bug_class": "n_plus_one",
+    "file": "store/product_serializer.py"
+   },
+   {
+    "bug_class": "layer_violation",
+    "file": "store/product_serializer.py"
+   },
+   {
+    "bug_class": "layer_violation",
+    "file": "store/product_controller.py"
+   }
+  ],
+  "flags": {
+   "sqli": false,
+   "nplus1": true,
+   "arch": true,
+   "missing_annotation": false
+  },
+  "handler_order": [
+   "exception_mismatch",
+   "none_dereference",
+   "argument_order",
+   "unit_mismatch"
+  ]
+ },
+ "instance_id": "cmb-012-store-argument_order-k5"
+}

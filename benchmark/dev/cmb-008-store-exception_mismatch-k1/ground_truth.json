@@ -1,0 +1,46 @@
+{
+ "instance_id": "cmb-008-store-exception_mismatch-k1",
+ "domain": "store",
+ "bug_type": "exception_mismatch",
+ "n_distractors": 1,
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "bug_file": "store/product_controller.py",
+ "bug_line": 14,
+ "child_file": "store/product_service.py",
+ "tool_bugs": [
+  {
+   "bug_class": "sql_injection",
+   "file": "store/product_repository.py"
+  },
+  {
+   "bug_class": "n_plus_one",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "store/product_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "store/product_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": true,
+  "nplus1": true,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "exception_mismatch",
+  "argument_order",
+  "none_dereference",
+  "unit_mismatch"
+ ]
+}

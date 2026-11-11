@@ -1,0 +1,264 @@
+{
+ "system": "flat",
+ "root_module": "store.product_controller",
+ "changed_files": [
+  "store/product_controller.py"
+ ],
+ "graph": {
+  "modules": [
+   "store.ids",
+   "store.product_controller",
+   "store.product_repository",
+   "store.product_serializer",
+   "store.product_service"
+  ],
+  "edges": [
+   [
+    "store.product_controller",
+    "store.ids"
+   ],
+   [
+    "store.product_controller",
+    "store.product_repository"
+   ],
+   [
+    "store.product_controller",
+    "store.product_serializer"
+   ],
+   [
+    "store.product_controller",
+    "store.product_service"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_repository"
+   ],
+   [
+    "store.product_service",
+    "store.product_repository"
+   ]
+  ],
+  "waves": [
+   [
+    "store.ids",
+    "store.product_repository"
+   ],
+   [
+    "store.product_serializer",
+    "store.product_service"
+   ],
+   [
+    "store.product_controller"
+   ]
+  ],
+  "repo_modules": 8
+ },
+ "evidence": {
+  "tool_runs": {
+   "performance": {
+    "tool": "ast-query-in-loop + bench harness",
+    "items": 0,
+    "seconds": 0.014,
+    "note": "no benchmarks/ directory: dynamic timing skipped"
+   },
+   "security": {
+    "tool": "bandit",
+    "items": 0,
+    "seconds": 0.367,
+    "note": ""
+   },
+   "code_quality": {
+    "tool": "ast-annotation-check",
+    "items": 0,
+    "seconds": 0.366,
+    "note": ""
+   },
+   "architecture": {
+    "tool": "ast-rule-engine",
+    "items": 0,
+    "seconds": 0.365,
+    "note": ""
+   },
+   "testing": {
+    "tool": "pytest + entry-point coverage",
+    "items": 4,
+    "seconds": 0.477,
+    "note": "1 passed in 0.03s"
+   },
+   "correctness": {
+    "tool": "none (LLM-native)",
+    "items": 0,
+    "seconds": 0.472,
+    "note": ""
+   }
+  },
+  "items": [
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 20,
+    "message": "Entry point 'handle_quote' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 27,
+    "message": "Entry point 'handle_payment' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 33,
+    "message": "Entry point 'handle_reserve' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   },
+   {
+    "module_id": "store.product_controller",
+    "category": "testing",
+    "rule_id": "TEST-001",
+    "severity": "low",
+    "file": "store/product_controller.py",
+    "line": 42,
+    "message": "Entry point 'build_summary' is not referenced by any test.",
+    "tool": "entry-point-coverage",
+    "metrics": {}
+   }
+  ]
+ },
+ "nodes": {},
+ "compound_risks": [],
+ "repair": null,
+ "cache_hits": 0,
+ "findings": [
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 20,
+   "bug_class": "missing_types",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The type hint for `quantity` in `handle_quote` is missing. It should be `int`.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 27,
+   "bug_class": "missing_types",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The type hint for `amount` in `handle_payment` is missing. It should be `int`.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 33,
+   "bug_class": "missing_types",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The type hint for `quantity` in `handle_reserve` is missing. It should be `int`.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  },
+  {
+   "module_id": "store.product_controller",
+   "file": "store/product_controller.py",
+   "line": 42,
+   "bug_class": "missing_types",
+   "severity": "low",
+   "category": "flat",
+   "rule_id": "",
+   "explanation": "The type hint for `events` in `build_summary` is missing. It should be `list[dict]` or similar, depending on the expected structure.",
+   "fix": "",
+   "related_module": "",
+   "source": "llm-flat"
+  }
+ ],
+ "status": "PASSED",
+ "usage": {
+  "llm_calls": 1,
+  "prompt_tokens_evaluated": 2585,
+  "output_tokens": 267,
+  "prompt_chars_sent": 7729,
+  "max_prompt_chars": 7729,
+  "llm_wall_s": 81.6,
+  "json_parse_failures": 0,
+  "calls": [
+   {
+    "role": "flat",
+    "module_id": "store.product_controller",
+    "prompt_tokens": 2585,
+    "output_tokens": 267,
+    "prompt_eval_s": 40.23555,
+    "eval_s": 41.32607,
+    "wall_s": 81.6016373980001,
+    "prompt_chars": 7729,
+    "parse_ok": true,
+    "response_text": "{\"findings\": [{\"file\": \"store/product_controller.py\", \"line\": 20, \"bug_class\": \"missing_types\", \"severity\": \"low\", \"explanation\": \"The type hint for `quantity` in `handle_quote` is missing. It should be `int`.\"}, {\"file\": \"store/product_controller.py\", \"line\": 27, \"bug_class\": \"missing_types\", \"severity\": \"low\", \"explanation\": \"The type hint for `amount` in `handle_payment` is missing. It should be `int`.\"}, {\"file\": \"store/product_controller.py\", \"line\": 33, \"bug_class\": \"missing_types\", \"severity\": \"low\", \"explanation\": \"The type hint for `quantity` in `handle_reserve` is missing. It should be `int`.\"}, {\"file\": \"store/product_controller.py\", \"line\": 42, \"bug_class\": \"missing_types\", \"severity\": \"low\", \"explanation\": \"The type hint for `events` in `build_summary` is missing. It should be `list[dict]` or similar, depending on the expected structure.\"}]}"
+   }
+  ]
+ },
+ "timing_s": {
+  "graph": 0.018,
+  "evidence": 0.49,
+  "total": 82.11
+ },
+ "categories": [
+  "performance",
+  "security",
+  "code_quality",
+  "architecture",
+  "testing",
+  "correctness"
+ ],
+ "peak_ollama_rss_mb": 4649.5,
+ "ground_truth": {
+  "instance_id": "cmb-008-store-exception_mismatch-k1",
+  "domain": "store",
+  "bug_type": "exception_mismatch",
+  "n_distractors": 1,
+  "changed_files": [
+   "store/product_controller.py"
+  ],
+  "bug_file": "store/product_controller.py",
+  "bug_line": 37,
+  "child_file": "store/product_service.py",
+  "tool_bugs": [],
+  "flags": {
+   "sqli": false,
+   "nplus1": false,
+   "arch": false,
+   "missing_annotation": false
+  },
+  "handler_order": [
+   "none_dereference",
+   "unit_mismatch",
+   "argument_order",
+   "exception_mismatch"
+  ]
+ },
+ "instance_id": "cmb-008-store-exception_mismatch-k1"
+}

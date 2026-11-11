@@ -1,0 +1,42 @@
+{
+ "instance_id": "cmb-019-garage-control-k1",
+ "domain": "garage",
+ "bug_type": null,
+ "n_distractors": 1,
+ "changed_files": [
+  "garage/part_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "n_plus_one",
+   "file": "garage/part_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "garage/part_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "garage/part_controller.py"
+  },
+  {
+   "bug_class": "missing_types",
+   "file": "garage/part_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": true,
+  "arch": true,
+  "missing_annotation": true
+ },
+ "handler_order": [
+  "none_dereference",
+  "argument_order",
+  "unit_mismatch",
+  "exception_mismatch"
+ ]
+}

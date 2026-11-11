@@ -1,0 +1,7 @@
+[submodule "delegate_implementation"]
+	path = delegate_implementation
+	url = https://github.com/rr4323/delegate_implementation.git
+	branch = main
+[submodule "sample_repos/flask-todo"]
+	path = sample_repos/flask-todo
+	url = https://github.com/patrickloeber/flask-todo.git

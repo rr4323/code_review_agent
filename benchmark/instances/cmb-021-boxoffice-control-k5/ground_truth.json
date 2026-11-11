@@ -1,0 +1,38 @@
+{
+ "instance_id": "cmb-021-boxoffice-control-k5",
+ "domain": "boxoffice",
+ "bug_type": null,
+ "n_distractors": 5,
+ "changed_files": [
+  "boxoffice/ticket_controller.py"
+ ],
+ "bug_file": null,
+ "bug_line": null,
+ "child_file": null,
+ "tool_bugs": [
+  {
+   "bug_class": "n_plus_one",
+   "file": "boxoffice/ticket_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "boxoffice/ticket_serializer.py"
+  },
+  {
+   "bug_class": "layer_violation",
+   "file": "boxoffice/ticket_controller.py"
+  }
+ ],
+ "flags": {
+  "sqli": false,
+  "nplus1": true,
+  "arch": true,
+  "missing_annotation": false
+ },
+ "handler_order": [
+  "argument_order",
+  "exception_mismatch",
+  "unit_mismatch",
+  "none_dereference"
+ ]
+}

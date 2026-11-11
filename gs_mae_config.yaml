@@ -1,0 +1,95 @@
+code_review_agent:
+  model_runtime:
+    # Any Ollama tag works. gemma4:e2b-it-qat runs on CPU-only machines with ~5 GB free RAM.
+    backend: ollama            # ollama | mock (mock is for unit tests only)
+    model: "gemma4:e2b-it-qat"
+    ollama_url: "http://127.0.0.1:11434"
+    num_ctx: 8192
+    temperature: 0.0
+    seed: 7
+    max_output_tokens: 384
+    request_timeout_s: 600
+  categories:
+    performance:
+      enabled: true
+    security:
+      enabled: true
+    code_quality:
+      enabled: true
+    architecture:
+      enabled: true
+    testing:
+      enabled: true
+    correctness:          # LLM-native category: cross-module contract / logic bugs
+      enabled: true
+  spawn_policy: evidence_gated   # all | evidence_gated (tool categories without evidence are skipped)
+  performance:
+    repetitions: 5
+    warmup_runs: 1
+    metrics:
+      - wall_time
+      - cpu_time
+      - memory_peak
+    baseline:
+      type: previous_commit
+      regression_threshold_percent: 20
+  # Optional live API exercise. Enabled via --live-api or configuration.
+  live_api:
+    enabled: false
+    start_command:
+      - python3
+      - /home/rajeev-ranjan/rajeev/worker_agent/gs_mae/live_api_harness.py
+    base_url: http://127.0.0.1:18000
+    health_path: /health
+    openapi_path: /openapi.json
+    startup_timeout_s: 20
+    request_timeout_s: 10
+    methods: [GET, HEAD]
+    safe_operation_ids: []
+    operation_modules:
+      list_audit_events: control_plane.delegates.views
+    max_operations: 20
+    warmup_runs: 1
+    repetitions: 3
+    slow_endpoint_ms: 500
+    regression_threshold_percent: 20
+    # Keep baselines outside the reviewed repository. Null uses
+    # ~/.cache/gsmae/live_api/<repository-hash>.json.
+    baseline_path: null
+  guidelines:
+    architecture:
+      - id: ARCH-001
+        severity: high
+        rule: "Business logic should remain outside presentation-layer components."
+        applies_to_layers: [presentation]
+        forbidden_identifiers: [tax_rate, discount_rate, margin, commission, loyalty]
+    framework:
+      - id: FW-001
+        severity: high
+        rule: "Avoid performing database queries directly inside serialization or presentation components."
+        applies_to_layers: [serialization, presentation]
+        forbidden_call_substrings: [execute, query, fetch_one, fetch_all, raw_sql, cursor]
+    language:
+      - id: LANG-001
+        severity: medium
+        rule: "Public functions and methods should provide explicit type information."
+  execution:
+    fail_on:
+      - critical
+      - high
+    generate_report: true
+    generate_patch: true
+    report_formats:
+      - json
+      - markdown
+  sandbox:
+    enabled: true
+    isolate_filesystem: true
+    scrub_environment: true
+    block_network: true
+    block_outside_writes: true
+    ast_patch_gate: true
+    cpu_time_limit_s: 30
+    memory_limit_mb: 768
+    max_file_size_mb: 16
+    max_open_files: 256
